@@ -1,0 +1,65 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    <h1 class="posttitle loader">{{ post.title }}</h1>
+    {% if post.published_date %}
+        <div class="date postdate">
+            {{ post.published_date }}
+        </div>
+
+    {% else %}
+        <a class="btn btn-outline-success" href="{% url 'post_publish' pk=post.pk %}"> Publish</a>
+
+    {% endif %}
+
+    <div class="postcontent">
+        <p>{{ post.text|safe|linebreaksbr }}</p> 
+    </div>
+
+    {% if user.is_authenticated %}
+        <a class="btn btn-info" href="{% url 'post_edit' pk=post.pk %}">Edit</a>
+        <a class="btn btn-warning" href="{% url 'post_remove' pk=post.pk %}">Delete</a>
+    {% endif %}
+
+    <hr>
+    <div class="content-fluid">
+        <div class="row">
+            <div class="col-9">
+                <p>Approved Comments: {{ post.approve_comments.count }}</p> 
+            </div>
+            <div class="col-3">
+                <a class="btn btn-primary " href="{% url 'add_comment_to_post' pk=post.pk %}"> Add Comment </a>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="content">
+        
+        {% for comment in post.comments.all %}
+        <br>
+            {% if user.is_authenticated or comment.approved_comments %}
+                {% if not comment.approved_comments %}
+                    <a class="btn btn-outline-primary" href="{% url 'comment_approve' pk=comment.pk %}">Approve</a>
+                    <a class="btn btn-warning" href="{% url 'comment_remove' pk=comment.pk %}">Remove</a>
+                {% endif %}
+                    <div class="commentcontent">
+                        <p> {{ comment.text|safe|linebreaks }}</p>
+                    </div>
+                        
+            <div class="row">
+                <div class="col-9">
+                    <p>Posted on: {{ comment.created_date }}</p>
+                </div>
+                <div class="col-3">
+                    <p>Posted By: {{ comment.author }}</p>
+                </div>
+            </div>
+                
+                    
+            {% endif %}
+            {% empty %}
+            <p> No Comments </p>
+        {% endfor %}
+    </div>
+
+{% endblock %}
