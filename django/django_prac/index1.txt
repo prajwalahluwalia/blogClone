@@ -1,0 +1,52 @@
+Q1) Give an array of integers arr of length n. each representing the maximum distance u can jump from the ith index. return if it is possible to reach the end provided you always start from the 0th index.
+arr = [3,2,1,4,2]
+o/p = true
+
+arr = [3,4,2,0,2]
+o/p = true
+
+1<=len(a)<10000
+0<=a[i]<=1000
+
+Def jump(arr, n, i):
+    If i > n:
+        Return True
+While i <n:
+ For j in range(i):
+    If arr[j]+j>=n:
+Return True
+Elif arr[j]==0:
+    Return False
+Else:
+    j+=arr[j]
+Return jump(arr, n, j)
+
+Arr = []
+I = 0
+n=len(arr)-1        //4
+print(jump(arr,n, i))
+    
+    
+    
+
+Time Complexity: O(n^2)
+Space Complexity: O(1)
+
+
+
+
+Q2) Provided an array of integers, return the max product possible from any subarray
+I/p: a = [1,2,3,4,5]
+O/p = 120
+I/p: a = [1,2,0,2,4]
+O/p: 8
+
+
+Prod = 1
+Mul = 1
+N = len(arr)
+For i in range(n-1):
+    For j in range(i+1, n):    
+        Prod = max(prod, max(prod*arr[i]*arr[j], mul*arr[i]*arr[j]))
+
+Return max(prod, max(arr))

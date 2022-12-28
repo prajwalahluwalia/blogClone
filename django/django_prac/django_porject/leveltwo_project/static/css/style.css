@@ -1,0 +1,16 @@
+h1{
+    color: grey;
+}
+h3{
+    color: blue;
+    text-align: center;
+}
+
+table, td, th{
+    border: 0px black solid;
+    align-items: center;
+}
+
+.djangotwo{
+    text-align: center;
+}

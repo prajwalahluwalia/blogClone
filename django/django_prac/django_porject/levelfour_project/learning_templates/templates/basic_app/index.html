@@ -1,0 +1,6 @@
+{% extends 'basic_app/base.html' %}
+{% block content %}
+    <h1>This is Index page.</h1>
+    <h2>{{ text|cut:"World" }}</h2>
+    <h2>{{ number|add:"99" }}</h2>
+{% endblock %}

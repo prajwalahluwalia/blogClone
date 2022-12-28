@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title> Index Page </title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        <h3>
+            Here is a list of all users.
+        </h3>
+        <div class = "djangotwo">
+            {% if user_record %}
+            <table>
+                <thead>
+                    <tr>
+                        <td> First Name </td>
+                        <td> Last Name </td>
+                        <td> Email </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in user_record %}
+                    <tr>
+                        <td> {{ user.first_name }}</td>
+                        <td> {{ user.last_name }}</td>
+                        <td> {{ user.email }}</td>
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>No records present</p>
+            {% endif %}
+        </div>
+    </body>
+</html>

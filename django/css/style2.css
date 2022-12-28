@@ -1,0 +1,23 @@
+.firstdiv{
+    color: blue;
+}
+
+.seconddiv{
+    color: green;
+}
+
+#singledout{
+    color: red;
+}
+
+ul{
+    border: 4px dotted purple;
+}
+
+li a{
+    color: red;
+}
+
+li a[href="www.django.org"]{
+    color: purple
+}
